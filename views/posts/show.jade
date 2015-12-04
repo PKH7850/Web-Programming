@@ -4,29 +4,47 @@ block content
   .container
     h1= post.title
     h3 by #{post.email}
-    .well= post.content
+
+    form(action='/posts', method='POST')
+      form-inline(type='text', name='question')
+      p.well(style='white-space:pre;')= post.question
 
     hr
-    h3 Comment (#{post.numComment})
-    table.table
-      tr
-        th email
-        th content
-        th time
-      each comment in comments
-        tr
-          td= comment.email
-          td= comment.content
-          td= moment(comment.createdAt).format('YYYY/MM/DD')
 
     form.form-inline(action='/posts/' + post._id + '/comments', method='POST')
       .form-group
         label.sr-only(for='email') email
-        input.form-control(name='email', placeholder='email')
+        input.form-control(name='email', placeholder='작성자')
+      hr
+      .form-group
+        input(type='radio', name='group', value=1)
+        p.well(style='white-space:pre;')= post.example1
+        input(type='radio', name='group', value=2)
+        p.well(style='white-space:pre;')= post.example2
+        input(type='radio', name='group', value=3)
+        p.well(style='white-space:pre;')= post.example3
+        input(type='radio', name='group', value=4)
+        p.well(style='white-space:pre;')= post.example4
+        input(type='radio', name='group', value=5)
+        p.well(style='white-space:pre;')= post.example5
+      hr
       .form-group
         label.sr-only(for='content') content
-        input.form-control(name='content', size=50, placeholder='content')
-      button.btn.btn-info 댓글저장
+        input.form-control(name='content', size=50, placeholder='기타 의견')
+      hr
+      button.btn.btn-info 설문 저장
+      hr
 
-    hr
+      h3 설문 응답 (#{post.numComment})
+      table.table
+        tr
+          th 작성자
+          th 응답
+          th 작성 시간
+        each comment in comments
+          tr
+            td= comment.email
+            td
+              a(href='/posts/#{post.id}/#{comment.id}')= comment.content
+            td= moment(comment.createdAt).format('YYYY/MM/DD')
     a.btn.btn-default(href='/posts') 목록

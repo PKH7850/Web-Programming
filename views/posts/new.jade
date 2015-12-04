@@ -2,22 +2,35 @@ extends ../layout
 
 block content
   .container
-    h1 글 작성
+    h1 설문 작성
 
     form(action='/posts', method='POST')
       .form-group
-        label(for='email') 이메일
-        input.form-control(name='email')
+        label(for='email') 작성자
+        input.form-control(name='email', placeholder='작성자')
       .form-group
         label(for='title') 제목
-        input.form-control(name='title')
+        input.form-control(name='title', placeholder='설문 제목')
       .form-group
         label(for='password') 비밀번호
         input.form-control(type='password', id='password', name='password', placeholder='Password')
+      |　
       .form-group
-        label(for='content') 내용
-        textarea.form-control(name='content')
-      .form-action
+        label(for='question') 질문
+        input.form-control(name='question', placeholder='질문 입력:')
+        label(for='example1') 1 - 보기 1
+        input.form-control(name='example1', placeholder='보기 1 입력:')
+        label(for='example2') 1 - 보기 2
+        input.form-control(name='example2', placeholder='보기 2 입력:')
+        label(for='example3') 1 - 보기 3
+        input.form-control(name='example3', placeholder='보기 3 입력:')
+        label(for='example4') 1 - 보기 4
+        input.form-control(name='example4', placeholder='보기 4 입력:')
+        label(for='example5') 1 - 보기 5
+        input.form-control(name='example5', placeholder='보기 5 입력:')
+      |　
+
+      div.form-action
         a.btn.btn-default(href='javascript:window.history.back();') 뒤로
         | &nbsp;
-        button.btn.btn-primary(type='submit') 글작성
+        button.btn.btn-primary(type='submit') 설문 작성

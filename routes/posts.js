@@ -30,8 +30,13 @@ router.post('/', function(req, res, next) {
   var post = new Post({
     title: req.body.title,
     email: req.body.email,
-    content: req.body.content,
-    password: req.body.password
+    password: req.body.password,
+    question: req.body.question,
+    example1: req.body.example1,
+    example2: req.body.example2,
+    example3: req.body.example3,
+    example4: req.body.example4,
+    example5: req.body.example5
   });
 
   post.save(function(err) {
@@ -73,7 +78,12 @@ router.put('/:id', function(req, res, next) {
     if (req.body.password === post.password) {
       post.email = req.body.email;
       post.title = req.body.title;
-      post.content = req.body.content;
+      post.question = req.body.question;
+      example1: req.body.example1;
+      example2: req.body.example2;
+      example3: req.body.example3;
+      example4: req.body.example4;
+      example5: req.body.example5;
       post.save(function(err) {
         if (err) {
           return next(err);
@@ -99,7 +109,11 @@ router.post('/:id/comments', function(req, res, next) {
   var comment = new Comment({
     post: req.params.id,
     email: req.body.email,
-    content: req.body.content
+    example1: req.body.example1,
+    example2: req.body.example2,
+    example3: req.body.example3,
+    example4: req.body.example4,
+    example5: req.body.example5
   });
 
   comment.save(function(err) {
@@ -114,5 +128,6 @@ router.post('/:id/comments', function(req, res, next) {
     });
   });
 });
+
 
 module.exports = router;

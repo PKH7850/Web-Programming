@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  .container
+
+    h3 설문 응답 (#{post.numComment})
+    table.table
+      tr
+        th 작성자
+        th 응답
+        th 작성 시간
+      each comment in comments
+        tr
+          td= comment.email
+          td
+            a(href='/posts/#{post.id}/#{comment.id}')= comment.content
+          td= moment(comment.createdAt).format('YYYY/MM/DD')
+          a.btn.btn-default(href='/posts') 목록
