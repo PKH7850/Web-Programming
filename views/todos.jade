@@ -2,12 +2,7 @@ extends layout
 
 block content
   #main.container.loading
-    .row
-      .col-sm-9
-        include ./includes/todo-main
-      .col-sm-3.side
-        include ./includes/todo-side
-    .spinner
+    include ./includes/todo-main
       .background
       .foreground
         p

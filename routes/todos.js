@@ -1,4 +1,6 @@
 var express = require('express');
+    Post = require('../models/post'),
+    Comment = require('../models/comment');
 var router = express.Router();
 
 function needAuth(req, res, next) {
