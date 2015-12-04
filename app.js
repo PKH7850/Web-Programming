@@ -13,7 +13,6 @@ var configAuth = require('./config/auth');
 
 var routes = require('./routes/index'),
     users = require('./routes/users'),
-    todos = require('./routes/todos'),
     survey = require('./routes/survey'),
     posts = require('./routes/posts');
 
@@ -71,7 +70,6 @@ module.exports = function(app, io) {
   app.use('/', routes);
   app.use('/posts', posts);
   app.use('/users', users);
-  app.use('/todos', todos);
   app.use('/survey', survey(io));
   routeAuth(app, passport);
 
