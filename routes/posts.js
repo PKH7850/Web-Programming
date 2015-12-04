@@ -30,6 +30,7 @@ router.post('/', function(req, res, next) {
   var post = new Post({
     title: req.body.title,
     email: req.body.email,
+    content: req.body.content,
     password: req.body.password,
     question: req.body.question,
     example1: req.body.example1,
@@ -84,6 +85,7 @@ router.put('/:id', function(req, res, next) {
       example3: req.body.example3;
       example4: req.body.example4;
       example5: req.body.example5;
+      content: req.body.content;
       post.save(function(err) {
         if (err) {
           return next(err);
@@ -108,6 +110,7 @@ router.delete('/:id', function(req, res, next) {
 router.post('/:id/comments', function(req, res, next) {
   var comment = new Comment({
     post: req.params.id,
+    content: req.body.content,
     email: req.body.email,
     example1: req.body.example1,
     example2: req.body.example2,
@@ -128,6 +131,5 @@ router.post('/:id/comments', function(req, res, next) {
     });
   });
 });
-
 
 module.exports = router;

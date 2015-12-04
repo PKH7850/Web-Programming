@@ -6,6 +6,11 @@ var schema = new Schema({
   post: {type: Schema.Types.ObjectId, required: true, trim: true},
   email: {type: String, required: true, trim: true},
   content: {type: String, required: true, trim: true},
+  example1: {type: String, trim: true},
+  example2: {type: String, trim: true},
+  example3: {type: String, trim: true},
+  example4: {type: String, trim: true},
+  example5: {type: String, trim: true},
   createdAt: {type: Date, default: Date.now}
 }, {
   toJSON: {virtuals: true},

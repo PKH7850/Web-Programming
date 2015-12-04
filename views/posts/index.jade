@@ -7,8 +7,8 @@ block content
     table.table
       tr
         th 작성자
-        th 제목
-        th 댓글
+        th 설문 제목
+        th 응답
         th 작성일
         th
       each post in posts
@@ -23,7 +23,7 @@ block content
             |　
             a.btn.btn-xs.btn-default(data-id=post.id, class='delete') 삭제
 
-    a.btn.btn-primary(href='/posts/new') 글작성
+    a.btn.btn-primary(href='/posts/new') 설문 작성
 
     form#deleteForm(style='display:none', method="POST")
 

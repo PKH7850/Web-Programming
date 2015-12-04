@@ -7,7 +7,7 @@ var schema = new Schema({
   email: {type: String, required: true, trim: true},
   password: {type: String},
   numComment: {type: Number, default: 0},
-  read: {type: Number, default: 0},
+  content: {type: String, required: true, trim: true},
   createdAt: {type: Date, default: Date.now},
   question: {type: String, trim: true},
   example1: {type: String, trim: true},
