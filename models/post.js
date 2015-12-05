@@ -3,11 +3,9 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var schema = new Schema({
-  title: {type: String, required: true, trim: true},
   email: {type: String, required: true, trim: true},
-  password: {type: String},
+  title: {type: String, required: true, trim: true},
   numComment: {type: Number, default: 0},
-  content: {type: String, required: true, trim: true},
   createdAt: {type: Date, default: Date.now},
   question: {type: String, trim: true},
   example1: {type: String, trim: true},

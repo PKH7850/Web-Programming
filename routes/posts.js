@@ -28,10 +28,8 @@ router.get('/new', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   var post = new Post({
-    title: req.body.title,
     email: req.body.email,
-    content: req.body.content,
-    password: req.body.password,
+    title: req.body.title,
     question: req.body.question,
     example1: req.body.example1,
     example2: req.body.example2,
@@ -62,40 +60,15 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
-router.get('/:id/edit', function(req, res, next) {
-  Post.findById(req.params.id, function(err, post) {
+router.get('/comments/:id', function(req, res, next) {
+  Comment.findById(req.params.id, function(err, comment) {
     if (err) {
       return next(err);
     }
-    res.render('posts/edit', {post: post});
+    res.render('posts/comment', {comment: comment});
   });
 });
 
-router.put('/:id', function(req, res, next) {
-  Post.findById(req.params.id, function(err, post) {
-    if (err) {
-      return next(err);
-    }
-    if (req.body.password === post.password) {
-      post.email = req.body.email;
-      post.title = req.body.title;
-      post.question = req.body.question;
-      example1: req.body.example1;
-      example2: req.body.example2;
-      example3: req.body.example3;
-      example4: req.body.example4;
-      example5: req.body.example5;
-      content: req.body.content;
-      post.save(function(err) {
-        if (err) {
-          return next(err);
-        }
-      });
-      req.flash('success', '설문이 변경 되었습니다.');
-      res.redirect('/posts');
-    }
-  });
-});
 
 router.delete('/:id', function(req, res, next) {
   Post.findOneAndRemove({_id: req.params.id}, function(err) {
@@ -107,16 +80,27 @@ router.delete('/:id', function(req, res, next) {
   });
 });
 
+router.delete('/comments/:id', function(req, res, next) {
+  Comment.findOneAndRemove({_id: req.params.id}, function(err) {
+    if (err) {
+      return next(err);
+    }
+    req.flash('success', '응답이 삭제되었습니다.');
+    res.redirect('/posts');
+  });
+  Post.findByIdAndUpdate(req.params.id, {$dec: {numComment: 1}}, function(err) {
+    if (err) {
+      return next(err);
+    }
+  });
+});
+
 router.post('/:id/comments', function(req, res, next) {
   var comment = new Comment({
     post: req.params.id,
     content: req.body.content,
+    answer: req.body.answer,
     email: req.body.email,
-    example1: req.body.example1,
-    example2: req.body.example2,
-    example3: req.body.example3,
-    example4: req.body.example4,
-    example5: req.body.example5
   });
 
   comment.save(function(err) {

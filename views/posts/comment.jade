@@ -2,17 +2,23 @@ extends ../layout
 
 block content
   .container
+    h1.page-header 응답 내용
 
-    h3 설문 응답 (#{post.numComment})
-    table.table
-      tr
-        th 작성자
-        th 응답
-        th 작성 시간
-      each comment in comments
-        tr
-          td= comment.email
-          td
-            a(href='/posts/#{post.id}/#{comment.id}')= comment.content
-          td= moment(comment.createdAt).format('YYYY/MM/DD')
-          a.btn.btn-default(href='/posts') 목록
+    ul
+      li 작성자 : #{comment.email}
+      li 응답 내용 : #{comment.answer}
+      li 기타 의견 : #{comment.content}
+    hr
+    p
+    a.btn.btn-xs.btn-default(data-id=comment.id, class='delete') 삭제
+
+    form#deleteForm(style='display:none', method="POST")
+
+    script(type='text/javascript').
+      $(".delete").click(function(e) {
+        var id = $(e.currentTarget).data('id');
+        if (confirm('정말 삭제하시겠습니까?')) {
+          $("#deleteForm").attr('action', "/posts/" + "comments/" + id + "?_method=DELETE").submit();
+        }
+        return false;
+      });

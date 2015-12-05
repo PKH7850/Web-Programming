@@ -17,15 +17,20 @@ block content
         input.form-control(name='email', placeholder='작성자')
       hr
       .form-group
-        input(type='radio', name='group', value=1)
+        label(for='answer') 보기 1
+        input(type='radio', name='answer', value='보기 1')
         p.well(style='white-space:pre;')= post.example1
-        input(type='radio', name='group', value=2)
+        label(for='answer') 보기 2
+        input(type='radio', name='answer', value='보기 2')
         p.well(style='white-space:pre;')= post.example2
-        input(type='radio', name='group', value=3)
+        label(for='answer') 보기 3
+        input(type='radio', name='answer', value='보기 3')
         p.well(style='white-space:pre;')= post.example3
-        input(type='radio', name='group', value=4)
+        label(for='answer') 보기 4
+        input(type='radio', name='answer', value='보기 4')
         p.well(style='white-space:pre;')= post.example4
-        input(type='radio', name='group', value=5)
+        label(for='answer') 보기 5
+        input(type='radio', name='answer', value='보기 5')
         p.well(style='white-space:pre;')= post.example5
       hr
       .form-group
@@ -45,6 +50,6 @@ block content
           tr
             td= comment.email
             td
-              a(href='/posts/#{post.id}/#{comment.id}')= comment.content
+              a(href='/posts/comments/#{comment.id}') 내용 보기
             td= moment(comment.createdAt).format('YYYY/MM/DD')
     a.btn.btn-default(href='/posts') 목록
