@@ -3,10 +3,10 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var schema = new Schema({
-  post: {type: Schema.Types.ObjectId, required: true, trim: true},
+  post: {type: Schema.Types.ObjectId, trim: true},
   email: {type: String, required: true, trim: true},
-  content: {type: String, required: true, trim: true},
-  answer: {type: String, trim: true},
+  content: {type: String, trim: true},
+  answer: {type: String, required: true, trim: true},
   createdAt: {type: Date, default: Date.now}
 }, {
   toJSON: {virtuals: true},
